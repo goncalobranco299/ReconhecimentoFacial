@@ -14,10 +14,8 @@ mp_drawing = mp.solutions.drawing_utils
 def extract_embedding(landmarks):
     pts = np.array([[lm.x, lm.y, lm.z] for lm in landmarks]).flatten()
 
-    # remove centróide
     pts -= np.mean(pts)
 
-    # normaliza energia
     norm = np.linalg.norm(pts)
     if norm > 0:
         pts /= norm
@@ -82,7 +80,6 @@ with mp_face_mesh.FaceMesh(static_image_mode=True, max_num_faces=1) as face_mesh
 
             lm = results.multi_face_landmarks[0].landmark
 
-            # *** FILTRAR ROSTOS RUINS ***
             if face_quality(lm) < 0.35:
                 continue
 
