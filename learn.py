@@ -45,7 +45,7 @@ while True:
         det = result.detections[0]
         bbox = det.location_data.relative_bounding_box
 
-        # Coordenadas reais
+        # Coordenadas 
         h, w, _ = frame.shape
         x = int(bbox.xmin * w)
         y = int(bbox.ymin * h)
@@ -58,15 +58,10 @@ while True:
         bw = min(w - x, bw)
         bh = min(h - y, bh)
 
-        # ---------------------------------------
-        # 5) Regras para garantir qualidade
-        # ---------------------------------------
-
-        # a) rosto muito pequeno (muito longe da câmera)
         if bw < 120 or bh < 120:
             message = "Chegue mais perto"
         
-        # b) rosto muito grande
+    
         elif bw > 400 or bh > 400:
             message = "Afastar um pouco"
         
@@ -93,9 +88,6 @@ while True:
     else:
         message = "Nenhum rosto detectado"
 
-    # ---------------------------------------
-    # 6) Mostrar mensagem na tela
-    # ---------------------------------------
     cv2.putText(frame, message, (10, 30),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
 
