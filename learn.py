@@ -3,7 +3,7 @@ import mediapipe as mp
 import os
 
 
-nome = input("Digite o nome da pessoa: ").strip().lower()
+nome = input("Digite o nome da pessoa: ")
 if nome == "":
     print("Nome inválido.")
     exit()
